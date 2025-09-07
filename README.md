@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Plataforma Educativa Witral
 
 Sistema web informativo y educativo con integración Shopify para Witral Chile.
@@ -44,3 +45,7 @@ Plataforma que combina contenido educativo sobre tejido artesanal con e-commerce
 
 ---
 **Desarrollado para Witral Chile** | Portafolio de Título CFT San Agustín
+=======
+# witral-web-platform
+Plataforma Witral con integración Shopify
+>>>>>>> 7ec5af0c80f4c087678099c834204e8a621fba29
