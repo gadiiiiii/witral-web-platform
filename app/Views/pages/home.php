@@ -5,8 +5,8 @@
 <!-- Hero Section -->
 <section class="hero-modern">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8" data-aos="fade-up">
+        <div class="row align-items-center">
+            <div class="col-lg-7" data-aos="fade-up">
                 <span class="hero-badge">
                     <i class="bi bi-star-fill me-1"></i>
                     Plataforma Educativa
@@ -30,6 +30,11 @@
                         <i class="bi bi-info-circle"></i>
                         Conocer Más
                     </a>
+                </div>
+            </div>
+            <div class="col-lg-5" data-aos="fade-left" data-aos-delay="200">
+                <div class="hero-image">
+                    <img src="<?= base_url('assets/img/tejido-prueba.jpg') ?>" alt="Artesana tejiendo" class="hero-img">
                 </div>
             </div>
         </div>

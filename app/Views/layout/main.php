@@ -573,6 +573,148 @@
                 font-size: 2rem;
             }
         }
+
+        .logout-hamburger {
+        background: var(--accent-green);
+        border: none;
+        border-radius: 8px;
+        width: 44px;
+        height: 44px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        transition: all 0.3s ease;
+        position: relative;
+        }
+
+        .logout-hamburger:hover {
+        background: #2F6041;
+       }
+
+        .logout-hamburger span {
+        width: 18px;
+        height: 2px;
+        background: white;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+        }
+
+/* Logout Dropdown */
+        .logout-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        border: 1px solid var(--card-border);
+        min-width: 180px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        margin-top: 0.5rem;
+      }
+
+       .logout-dropdown.show {
+       opacity: 1;
+       visibility: visible;
+       transform: translateY(0);
+      }
+
+       .logout-menu-item {
+       display: flex;
+       align-items: center;
+       gap: 0.75rem;
+       padding: 1rem 1.25rem;
+       cursor: pointer;
+       transition: all 0.3s ease;
+       color: var(--dark);
+       border-radius: 12px;
+      }
+
+       .logout-menu-item:hover {
+       background: rgba(220, 53, 69, 0.1);
+       color: #dc3545;
+       }
+
+       .logout-menu-item i {
+       font-size: 1.1rem;
+}
+
+       .logout-menu-item span {
+       font-weight: 500;
+       font-size: 0.95rem;
+  }
+
+/* Mobile Logout Button */
+       .logout-btn-mobile {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border: 2px solid #dc3545;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+     }
+
+       .logout-btn-mobile:hover {
+       background: #dc3545;
+       color: white;
+    }
+
+/* Responsive */
+       @media (max-width: 991px) {
+       .logout-hamburger {
+        display: none;
+    }
+    
+       .logout-dropdown {
+        display: none;
+    }
+}
+    .hero-image {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.hero-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(60, 55, 47, 0.15);
+    transition: all 0.3s ease;
+}
+
+.hero-img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(60, 55, 47, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .hero-img {
+        height: 300px;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-img {
+        height: 250px;
+        border-radius: 20px;
+    }
+}
     </style>
 </head>
 <body>
@@ -590,14 +732,16 @@
                     <a href="<?= base_url('nosotros') ?>" class="nav-link-modern">Nosotros</a>
                     <a href="<?= base_url('cursos') ?>" class="nav-link-modern">Cursos</a>
                     <a href="<?= base_url('contacto') ?>" class="nav-link-modern">Contacto</a>
-                    <button class="btn-primary-modern ms-3" onclick="toggleAdmin()">
-                        <i class="bi bi-person-gear"></i> Admin
-                    </button>
+                    <button class="logout-hamburger ms-3" onclick="toggleLogoutMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 </div>
                 
                 <!-- Mobile Menu Toggle -->
                 <button class="btn d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu">
-                    <i class="bi bi-list" style="font-size: 1.5rem;"></i>
+                <i class="bi bi-list" style="font-size: 1.5rem;"></i>
                 </button>
             </div>
             
@@ -608,10 +752,17 @@
                     <a href="<?= base_url('nosotros') ?>" class="nav-link-modern">Nosotros</a>
                     <a href="<?= base_url('cursos') ?>" class="nav-link-modern">Cursos</a>
                     <a href="<?= base_url('contacto') ?>" class="nav-link-modern">Contacto</a>
-                    <button class="btn-primary-modern mt-2 text-center" onclick="toggleAdmin()">
-                        <i class="bi bi-person-gear"></i> Admin
+                    <button class="logout-btn-mobile mt-2" onclick="logout()">
+                    <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
                     </button>
                 </div>
+            </div>
+
+            <div class="logout-dropdown" id="logoutDropdown">
+            <div class="logout-menu-item" onclick="logout()">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Cerrar Sesión</span>
+            </div>
             </div>
         </div>
     </nav>
@@ -787,6 +938,27 @@
                 }
             });
         });
+
+        function toggleLogoutMenu() {
+        const dropdown = document.getElementById('logoutDropdown');
+        dropdown.classList.toggle('show');
+    
+        // Cerrar si se hace click fuera
+        document.addEventListener('click', function(e) {
+        const hamburger = document.querySelector('.logout-hamburger');
+        if (!hamburger.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('show');
+        }
+        });
+        }
+
+        function logout() {
+    // Aquí puedes agregar tu lógica de logout
+        if (confirm('¿Estás seguro que quieres cerrar sesión?')) {
+        // Redirigir al logout o limpiar sesión
+            window.location.href = '<?= base_url('logout') ?>';
+        }
+        }
     </script>
 </body>
 </html>
