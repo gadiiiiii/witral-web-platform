@@ -6,8 +6,8 @@ use CodeIgniter\Config\BaseConfig;
 
 class Email extends BaseConfig
 {
-    public string $fromEmail  = '';
-    public string $fromName   = '';
+    public string $fromEmail = 'noreply@witral.cl';
+    public string $fromName = 'Witral - Plataforma Educativa';
     public string $recipients = '';
 
     /**
@@ -18,7 +18,7 @@ class Email extends BaseConfig
     /**
      * The mail sending protocol: mail, sendmail, smtp
      */
-    public string $protocol = 'mail';
+    public string $protocol = 'mail'; // Cambia a 'smtp' si usas un servidor SMTP
 
     /**
      * The server path to Sendmail.
@@ -57,10 +57,7 @@ class Email extends BaseConfig
 
     /**
      * SMTP Encryption.
-     *
      * @var string '', 'tls' or 'ssl'. 'tls' will issue a STARTTLS command
-     *             to the server. 'ssl' means implicit SSL. Connection on port
-     *             465 should set this to ''.
      */
     public string $SMTPCrypto = 'tls';
 
@@ -77,7 +74,7 @@ class Email extends BaseConfig
     /**
      * Type of mail, either 'text' or 'html'
      */
-    public string $mailType = 'text';
+    public string $mailType = 'html';
 
     /**
      * Character set (utf-8, iso-8859-1, etc.)
@@ -87,7 +84,7 @@ class Email extends BaseConfig
     /**
      * Whether to validate the email address
      */
-    public bool $validate = false;
+    public bool $validate = true;
 
     /**
      * Email Priority. 1 = highest. 5 = lowest. 3 = normal
@@ -95,12 +92,12 @@ class Email extends BaseConfig
     public int $priority = 3;
 
     /**
-     * Newline character. (Use “\r\n” to comply with RFC 822)
+     * Newline character. (Use "\r\n" to comply with RFC 822)
      */
     public string $CRLF = "\r\n";
 
     /**
-     * Newline character. (Use “\r\n” to comply with RFC 822)
+     * Newline character. (Use "\r\n" to comply with RFC 822)
      */
     public string $newline = "\r\n";
 

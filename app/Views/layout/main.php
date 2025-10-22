@@ -603,54 +603,54 @@
         }
 
 /* Logout Dropdown */
-        .logout-dropdown {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-        border: 1px solid var(--card-border);
-        min-width: 180px;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        transition: all 0.3s ease;
-        z-index: 1000;
-        margin-top: 0.5rem;
-      }
-
-       .logout-dropdown.show {
-       opacity: 1;
-       visibility: visible;
-       transform: translateY(0);
-      }
-
-       .logout-menu-item {
-       display: flex;
-       align-items: center;
-       gap: 0.75rem;
-       padding: 1rem 1.25rem;
-       cursor: pointer;
-       transition: all 0.3s ease;
-       color: var(--dark);
-       border-radius: 12px;
-      }
-
-       .logout-menu-item:hover {
-       background: rgba(220, 53, 69, 0.1);
-       color: #dc3545;
-       }
-
-       .logout-menu-item i {
-       font-size: 1.1rem;
+.logout-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--card-border);
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 2000;
+    margin-top: 0.5rem;
 }
 
-       .logout-menu-item span {
-       font-weight: 500;
-       font-size: 0.95rem;
-  }
+.logout-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
 
+.logout-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--dark);
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.logout-menu-item:hover {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+.logout-menu-item i {
+    font-size: 1.1rem;
+}
+
+.logout-menu-item span {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
 /* Mobile Logout Button */
        .logout-btn-mobile {
     background: rgba(220, 53, 69, 0.1);

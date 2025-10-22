@@ -1,56 +1,38 @@
 <?php
+// app/Controllers/Home.php
 
 namespace App\Controllers;
 
+use App\Models\VideoModel;
+
 class Home extends BaseController
 {
-    protected $cursoModel;
-    protected $videoModel;
-
-    public function __construct()
-    {
-        $this->cursoModel = new \App\Models\CursoModel();
-        $this->videoModel = new \App\Models\VideoModel();
-    }
-
     public function index()
     {
+        $videoModel = new VideoModel();
+        
         $data = [
             'title' => 'Witral - Tejidos con Consciencia Social',
-            'cursos_destacados' => $this->cursoModel->limit(3)->find(),
-            'total_estudiantes' => $this->cursoModel->getTotalEstudiantes(),
-            'total_cursos' => $this->cursoModel->countAll()
+            'cursos_destacados' => $videoModel->getVideosDestacados(3),
+            'total_cursos' => $videoModel->where('activo', 1)->countAllResults(),
+            'total_estudiantes' => '1,019',
         ];
-
+        
         return view('pages/home', $data);
     }
 
-    public function cursos()
+     public function cursos()
     {
-        $data = [
-            'title' => 'Cursos - Witral',
-            'cursos' => $this->cursoModel->findAll(),
-            'categorias' => $this->cursoModel->getCategorias()
-        ];
-
-        return view('pages/cursos', $data);
+        return view('pages/cursos');
     }
 
     public function nosotros()
     {
-        $data = [
-            'title' => 'Nosotros - Witral'
-        ];
-
-        return view('pages/nosotros', $data);
+        return view('pages/nosotros');
     }
 
     public function contacto()
     {
-        $data = [
-            'title' => 'Contacto - Witral'
-        ];
-
-        return view('pages/contacto', $data);
+        return view('pages/contacto');
     }
 }
