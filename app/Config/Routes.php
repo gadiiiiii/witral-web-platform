@@ -6,11 +6,11 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
-$routes->get('/cursos', 'Cursos::index');
-$routes->get('curso/(:num)', 'Cursos::ver/$1');
-$routes->get('/nosotros', 'Home::nosotros');
-$routes->get('contacto', 'Contacto::index');
-$routes->post('contacto/enviar', 'Contacto::enviar');
+$routes->get('nosotros', 'Pages::nosotros');
+$routes->get('cursos', 'Cursos::index');
+$routes->get('cursos/(:num)', 'Cursos::detalle/$1');
+$routes->get('contacto', 'Pages::contacto');
+$routes->post('contacto/enviar', 'Pages::enviarContacto');
 
 // Admin Routes
 $routes->group('admin', function($routes) {
